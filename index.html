@@ -1,1 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEESLE - 26 S/S Collection 墨(묵)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Serif+KR:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F5F2EB; /* 닥종이 같은 미색 */
+            --text-color: #111;
+            --font-main: 'Nanum Myeongjo', serif;
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Serif KR', serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* =================================================================
+           [CSS 수묵 효과] 
+           ================================================================= */
+        .ink-shape {
+            position: absolute;
+            background: #000;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.08;
+            z-index: -1; /* 동영상보다는 위에, 글씨보다는 아래 */
+            pointer-events: none;
+            animation: ink-float 10s infinite alternate ease-in-out;
+        }
+
+        .ink-1 {
+            top: -100px; right: -100px;
+            width: 600px; height: 500px;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+
+        .ink-2 {
+            top: 40%; left: -50px;
+            width: 300px; height: 300px;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            opacity: 0.05;
+        }
+
+        .ink-3 {
+            bottom: -50px; right: 10%;
+            width: 500px; height: 200px;
+            border-radius: 50% 50% 20% 20%;
+            opacity: 0.1;
+            background: linear-gradient(to right, #333, #000);
+        }
+
+        .ink-pine {
+            position: absolute;
+            top: 10%; right: 5%;
+            width: 200px; height: 300px;
+            background: #2F4F4F;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            filter: blur(30px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        @keyframes ink-float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(10px) scale(1.05); }
+        }
+
+        /* ================================================================= */
+
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 50px; position: fixed; width: 100%; top: 0; z-index: 100;
+        }
+        .logo {
+            font-family: var(--font-main); font-weight: 800; font-size: 2rem;
+            letter-spacing: 5px;
+        }
+        .menu a {
+            text-decoration: none; color: #333; margin-left: 30px; font-size: 0.9rem;
+            opacity: 0.6; transition: 0.3s;
+        }
+        .menu a:hover { opacity: 1; }
+
+        /* Hero 섹션 수정됨 (동영상 배경을 위해) */
+        .hero {
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            padding-left: 10%; 
+            position: relative;
+            overflow: hidden; /* 동영상이 삐져나가지 않게 */
+        }
+
+        /* 배경 동영상 스타일 추가 */
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 화면 꽉 차게 비율 유지 */
+            z-index: -2; /* 가장 뒤로 보냄 (CSS 먹물 효과보다 뒤) */
+            opacity: 0.6; /* 글씨 가독성을 위해 투명도 조절 (필요시 수정) */
+        }
+
+        .title-wrap h1 {
+            font-family: var(--font-main); font-size: 15vw; line-height: 1;
+            margin: 0; opacity: 0.9;
+            text-shadow: 10px 10px 20px rgba(0,0,0,0.05);
+        }
+        .title-wrap p {
+            font-size: 1.2rem; letter-spacing: 2px; margin-top: 20px; color: #333;
+            border-top: 1px solid #333; display: inline-block; padding-top: 10px;
+            font-weight: 600; /* 배경이 동영상이라 글씨를 조금 더 진하게 */
+        }
+
+        .scroll-txt {
+            position: absolute; bottom: 50px; left: 10%;
+            font-size: 0.8rem; color: #555; writing-mode: vertical-rl;
+            font-weight: bold;
+        }
+
+        .content {
+            padding: 100px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 50px;
+            align-items: center; position: relative;
+        }
+
+        .img-box {
+            height: 600px;
+            background: #e8e6df; 
+            position: relative;
+            border: 1px solid #ccc;
+        }
+        
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .img-box::before {
+            content: ''; position: absolute; top: 20px; left: -20px;
+            width: 100%; height: 100%; border: 1px solid #111; z-index: -1;
+        }
+
+        .text-box h2 {
+            font-family: var(--font-main); font-size: 3rem; margin-bottom: 30px;
+        }
+        .text-box p {
+            color: #555; line-height: 1.8; margin-bottom: 20px;
+            word-break: keep-all;
+        }
+        .btn {
+            display: inline-block; padding: 15px 40px; background: #111; color: #fff;
+            text-decoration: none; font-size: 0.9rem; margin-top: 20px;
+            transition: 0.3s;
+        }
+        .btn:hover { background: #444; }
+
+        footer {
+            text-align: center; padding: 50px; color: #aaa; font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ink-shape ink-1"></div>
+    <div class="ink-shape ink-pine"></div>
+    <div class="ink-shape ink-2"></div>
+
+    <nav>
+        <div class="logo">LEESLE</div>
+        <div class="menu">
+            <a href="lookbook.html">COLLECTION</a>
+            <a href="#">SHOP</a>
+            <a href="#">LOGIN</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="수묵화_컨셉_영상_제작_요청.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="title-wrap">
+            <h1>墨</h1>
+            <p>2026 S/S CAPSULE COLLECTION</p>
+        </div>
+        <div class="scroll-txt">SCROLL DOWN</div>
+    </section>
+
+    <section class="content">
+        <div class="ink-shape ink-3"></div>
+
+        <div class="img-box">
+            <img src="gt.png" alt="LEESLE 26 S/S Lookbook">
+        </div>
+
+        <div class="text-box">
+            <h2>검은 빛의 향연</h2>
+            <p>
+                먹이 화선지에 스며들듯, 
+                가장 한국적인 선과 여백으로
+            </p>
+            <p>
+                단순한 블랙이 아닌, 깊이 있는 어둠과 빛의 조화를 만나보세요.
+            </p>
+            <a href="lookbok.html" class="btn">컬렉션 확인하기</a>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 LEESLE. Designed by Choiminsung.
+    </footer>
+
+</body>
+</html>
